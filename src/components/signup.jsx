@@ -1,14 +1,26 @@
+import React from 'react';
+
 export default function Signup() {
 return(
-   <div>
-    <input type="text" placeholder="Name" value={name} />
-    <input type="text" placeholder="Email" value={email} />
-    <input type="password" placeholder="Password" value={password}/>
-    <input type="ConfirmPassword" placeholder="Confirm Password" value={ConfirmPassword} />
-    <select name="Role" id="Role">
-        <option value="Admin">Admin</option>
-        <option value="User">User</option>
-    </select>
-   </div>
+    <div>
+        <h1>Signup</h1>
+        <form>
+            <label htmlFor="username">Name:</label>
+            <input type="text" id="username" name="username" required />
+            <br />
+            <label htmlFor="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+            <br />
+            <label htmlFor="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+            <br />  <label for="ConfirmPassword">Confirm Password:</label>
+            <input type="password" id="ConfirmPassword" name="ConfirmPassword" required/>
+            <br/>
+            <label for="Role">Role:</label>
+            <input type="text" id="Role" name="Role" required/>
+            <br/>
+            <input type="submit" value="Signup"/>
+        </form>
+    </div>
 )
 }
