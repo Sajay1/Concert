@@ -8,6 +8,18 @@ export default function Signup() {
     const [password,setPassword]=useState("");
     const [confirmpassword,setConfirmPassword]=useState("");
     const [role,setRole]=useState("Admin","User");
+
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+    const res=await axios.post();
+    onCreated('');
+    setName('')
+    setEmail('')
+    setPassword('')
+    setConfirmPassword('')
+    setRole("Admin","User")
+  }
+
     return(
     <div>
         <h1>Signup</h1>
