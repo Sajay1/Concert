@@ -1,7 +1,7 @@
 .navbar {
     background-image: linear-gradient(to right, #320ffa, #f60000);
     padding: 1rem 2rem;
-    display: flex;
+    display: flexbox;
     width: 100%;
     justify-content: space-between;
     align-items: center;
@@ -9,7 +9,7 @@
   }
   
   .navbar-brand {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     display: flex;
   }
