@@ -10,6 +10,9 @@ function Navbar() {
             </div>
                 <div className="nav-items">
                     <NavLink to="/signup" className="nav-item">
+                        Home
+                    </NavLink>
+                    <NavLink to="/signup" className="nav-item">
                         Signup
                     </NavLink>
                     <NavLink to="/login" className="nav-item">

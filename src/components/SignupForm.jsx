@@ -1,4 +1,5 @@
-import React, { use, useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
 
 
 
@@ -19,6 +20,15 @@ export default function Signup() {
     setConfirmPassword('')
     setRole("Admin","User")
   }
+
+  
+
+useEffect(() => {
+  axios.post('http://localhost:5000/api/signup')
+    .then(res => set(res.data))
+    .catch(err => console.error('API error:', err));
+}, []);
+
 
     return(
     <div>
