@@ -1,17 +1,14 @@
 import React , { useState } from 'react';
 import Navbar from './components/Navbar';
 import Signup from './components/SignupForm';
+import { div } from 'framer-motion/client';
 
 export default function App() {
 
   return(
   <div>
-      <div className=''>
       <Navbar/>
-    </div>
-    <div>    
-      <Signup/>
-    </div>
+  <Signup/>
   </div>
 );
 }
