@@ -41,18 +41,18 @@ useEffect(() => {
           </div>
           <div className='flex flex-col'>
              <label htmlFor="email" className='text-[18px] text-gray dark:text-white'>Email</label>
-          <input type="text" id="username" value={email} onChange={(e)=>setEmail(e.target.value)} className='w-full rounded-md border-2 border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500' required/>
+          <input type="text" id="email" value={email} onChange={(e)=>setEmail(e.target.value)} className='w-full rounded-md border-2 border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500' required/>
           </div>
           <div className='flex flex-col'>
              <label htmlFor="password" className='text-[18px] text-gray dark:text-white'>Password</label>
-          <input type="text" id="username" value={password} onChange={(e)=>setPassword(e.target.value)} className='w-full rounded-md border-2 border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500' required/>
+          <input type="text" id="password" value={password} onChange={(e)=>setPassword(e.target.value)} className='w-full rounded-md border-2 border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500' required/>
           </div>
           <div className='flex flex-col'>
              <label htmlFor="confirmpassowrd" className='text-[18px] text-gray dark:text-white'>Confirm Password</label>
-          <input type="text" id="username" value={confirmpassword} onChange={(e)=>setConfirmPassword(e.target.value)} className='w-full rounded-md border-2 border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500' required/>
+          <input type="text" id="confirmpassowrd" value={confirmpassword} onChange={(e)=>setConfirmPassword(e.target.value)} className='w-full rounded-md border-2 border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500' required/>
           </div>
           <div className='flex flex-col'>
-             <label htmlFor="username" className='text-[18px] text-gray dark:text-white'>Role</label>
+             <label htmlFor="role" className='text-[18px] text-gray dark:text-white'>Role</label>
              <select name="role" id="role" className='text-white border-white border-2 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500' value={role} onChange={(e)=>setRole(e.target.value)}> 
             <option value="Admin">Admin</option>
             <option value="User">User</option>
