@@ -6,8 +6,12 @@ export default function App() {
 
   return(
   <div>
-    <Navbar/>
-    <Signup/>
+      <div className=''>
+      <Navbar/>
+    </div>
+    <div>    
+      <Signup/>
+    </div>
   </div>
 );
 }

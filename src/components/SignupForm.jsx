@@ -31,11 +31,11 @@ useEffect(() => {
 
 
     return(
-    <div className=''>
+    <div className='flex min-h-screen items-center justify-center bg-slate-100 dark:bg-slate-900'>
       <div className="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
         <h1 className='block bg-[#316ff6] align-items-center'>Signup</h1>
         <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Name:</label>
+            <label htmlFor="username" className='white'>Name:</label>
             <input className='bg-white rounded-md' type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
             <br />
             <label htmlFor="email">Email:</label>
