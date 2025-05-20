@@ -39,6 +39,9 @@ useEffect(() => {
              <label htmlFor="password" className='text-[18px] text-green-100'>Password</label>
           <input type="text" id="username" value={password} onChange={(e)=>setPassword(e.target.value)} className='w-full rounded-md border-2 border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500' required/>
           </div>
+           <div className='flex flex-col'>
+        <span>Don't have an account? <a href="/signup">Signup</a></span>
+      </div>
          </form>     
     </div>
     </div>
