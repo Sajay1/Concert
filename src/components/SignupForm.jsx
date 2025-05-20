@@ -51,8 +51,7 @@ useEffect(() => {
                 <option value="User">User</option>
             </select>
             <br/>
-            <input type="submit" value="Signup"/>
-        </form>
+<button class="bg-sky-700 px-4 py-2 text-white hover:bg-sky-800 sm:px-8 sm:py-3">Submit</button>        </form>
     </div>
 )
 }
