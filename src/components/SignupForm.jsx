@@ -12,7 +12,7 @@ export default function Signup() {
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    const res=await axios.post();
+    const res=await axios.post('http://localhost:5000/api/signup');
     onCreated('');
     setName('')
     setEmail('')
