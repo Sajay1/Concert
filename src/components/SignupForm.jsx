@@ -31,27 +31,29 @@ useEffect(() => {
 
 
     return(
-    <div>
-        <h1>Signup</h1>
+    <div className=''>
+      <div className="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+        <h1 className='block bg-[#316ff6] align-items-center'>Signup</h1>
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">Name:</label>
-            <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
+            <input className='bg-white rounded-md' type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
             <br />
             <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input className='bg-white rounded-md' type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             <br />
             <label htmlFor="password">Password:</label>
-            <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <input className='bg-white rounded-xl' type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             <br />  <label for="ConfirmPassword">Confirm Password:</label>
-            <input type="password" id="ConfirmPassword" name="ConfirmPassword" value={confirmpassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>
+            <input className='bg-white rounded-md' type="password" id="ConfirmPassword" name="ConfirmPassword" value={confirmpassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>
             <br/>
             <label for="Role">Role:</label>
-            <select name="role" id="role" value={role} onChange={(e) => setRole(e.target.value)}>
+            <select   name="role" id="role" value={role} onChange={(e) => setRole(e.target.value)}>
                 <option value="Admin">Admin</option>
                 <option value="User">User</option>
             </select>
             <br/>
 <button class="bg-sky-700 px-4 py-2 text-white hover:bg-sky-800 sm:px-8 sm:py-3">Submit</button>        </form>
+    </div>
     </div>
 )
 }
