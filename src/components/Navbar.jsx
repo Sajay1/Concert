@@ -5,11 +5,11 @@ import React from "react";
 function Navbar() {
     return (
         <nav className="navbar">
-            <div className="navbar-brand">
+            <div className="mx-auto text-white font-bold text-2xl">
                 Concert
             </div>
-                <div className="nav-items">
-                    <NavLink to="/signup" className="nav-item">
+                <div className="nav-items ">
+                        <NavLink to="/signup" className="nav-item">
                         Home
                     </NavLink>
                     <NavLink to="/signup" className="nav-item">
