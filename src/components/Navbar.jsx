@@ -1,6 +1,7 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon , XMarkIcon } from '@heroicons/react/24/outline'
-import {  Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -32,8 +33,8 @@ export default function Navbar() {
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
-                  <Link to='/signup'>Signup</Link>
-                  <Link to='/'>Login</Link>
+              <Link to="/" className='Login'>Login</Link>
+              <Link to="/signup" className='Signup'>Signup</Link>
               </div>
             </div>
           </div>

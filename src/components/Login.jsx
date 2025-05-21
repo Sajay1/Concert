@@ -9,7 +9,9 @@ export default function Signup() {
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    const res=await axios.post('http://localhost:5000/api/login');
+    const res=await axios.post('http://localhost:5000/api/login')
+    .then(res => set(res.data))
+    .catch(err => console.error('API error:', err));
     onCreated('');
 
     setEmail('')
