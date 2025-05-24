@@ -26,7 +26,7 @@ const navigate = useNavigate();
       setEmail('');
       setPassword('');
       setError('');
-       if(setRole ==='User'){
+      if(setRole ==='User'){
       navigate('/home');
       }else{
         navigate('/create');
