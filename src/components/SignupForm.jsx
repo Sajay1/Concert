@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
   const [name, setName] = useState('');
@@ -12,6 +13,8 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const navigate=useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,10 +25,11 @@ export default function Signup() {
 
     try {
       const res = await axios.post('http://localhost:5000/api/signup', {
-        name,
-        email,
-        password,
-        role,
+        Name: name,
+        Email: email,
+        Password: password,
+        ConfirmPassword: confirmpassword,
+        Role: role,
       });
       setMessage('User registered successfully');
       setName('');
@@ -33,6 +37,7 @@ export default function Signup() {
       setPassword('');
       setConfirmPassword('');
       setRole('Admin');
+     navigate('/login');
     } catch (error) {
       console.error('Signup error:', error);
       setMessage('Signup failed');
