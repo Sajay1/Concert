@@ -74,7 +74,7 @@ export default function Navbar() {
                       </>
                     )}
 
-                    {role === "User" && (
+                    {role === "user" && (
                       <>
                         <Link
                           to="/concerts"
@@ -92,7 +92,7 @@ export default function Navbar() {
                       </>
                     )}
 
-                    {role === "Admin" && (
+                    {role === "admin" && (
                       <>
                         <Link
                           to="/admin"
@@ -135,7 +135,7 @@ export default function Navbar() {
                 </>
               )}
 
-              {role === "User" && (
+              {role === "user" && (
                 <>
                   <Link
                     to="/concerts"
@@ -158,7 +158,7 @@ export default function Navbar() {
                 </>
               )}
 
-              {role === "Admin" && (
+              {role === "admin" && (
                 <>
                   <Link
                     to="/admin"
