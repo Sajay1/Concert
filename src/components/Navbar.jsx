@@ -1,9 +1,12 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Link } from 'react-router-dom';
+import { Link,useLocation,useNavigate } from 'react-router-dom';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+const navigate = useNavigate();
+const location = useLocation();
+const logout=() => {
+  localStorage.clear();
+  navigate('/');
 }
 
 export default function Navbar() {
@@ -37,6 +40,18 @@ export default function Navbar() {
                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Login
+                    </Link>
+                    <Link
+                      to="/"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      to="/"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      <img src="https://www.svgrepo.com/show/151176/logout.svg" alt="Logout" />
                     </Link>
                     <Link
                       to="/signup"

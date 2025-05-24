@@ -31,16 +31,15 @@ export default function Signup() {
         ConfirmPassword: confirmpassword,
         Role: role,
       },
-     { withCredentials: true }
     );
-    
+
       setMessage('User registered successfully');
-      navigate('/login');
       setName('');
       setEmail('');
       setPassword('');
       setConfirmPassword('');
       setRole('Admin');
+       navigate('/');
     } catch (error) {
       console.error('Signup error:', error);
       setMessage('Signup failed');

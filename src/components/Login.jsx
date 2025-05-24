@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 export default function Login() {
@@ -25,24 +26,31 @@ const navigate = useNavigate();
 }
 );
 
+toast.success(res.data.message || "Login Successful", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+
+const role = res.data.role; // Assuming the response contains a Role field
       console.log('Login successful:', res.data);
       // Optionally redirect or store token
-
-     const role = res.data.role;
-
-    // Redirect based on role
-    if (role === 'User') {
-      navigate('/home');
-    } else if (role === 'Admin') {
-      navigate('/create');
-    } else {
-      setError('Unknown role');
-    }
 
       setEmail('');
       setPassword('');
       setError('');
 
+      if(role === 'Admin') {
+        navigate('/admin'); }
+        else if(role === "User"){// Redirect to admin page
+      navigate('/home');} // Redirect to home page after successful login
+      else{
+        navigate('/'); // Redirect to login page if role is not recognized
+      }
     } catch (err) {
       console.error('Login error:', err);
       setError('Invalid credentials');
