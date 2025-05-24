@@ -26,16 +26,6 @@ const navigate = useNavigate();
 }
 );
 
-toast.success(res.data.message || "Login Successful", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
-
 const role = res.data.role; // Assuming the response contains a Role field
       console.log('Login successful:', res.data);
       // Optionally redirect or store token
