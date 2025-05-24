@@ -24,20 +24,23 @@ export default function Signup() {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/signup', {
+       await axios.post('http://localhost:5000/api/signup', {
         Name: name,
         Email: email,
         Password: password,
         ConfirmPassword: confirmpassword,
         Role: role,
-      });
+      },
+     { withCredentials: true }
+    );
+    
       setMessage('User registered successfully');
+      navigate('/login');
       setName('');
       setEmail('');
       setPassword('');
       setConfirmPassword('');
       setRole('Admin');
-     navigate('/login');
     } catch (error) {
       console.error('Signup error:', error);
       setMessage('Signup failed');

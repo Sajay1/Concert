@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Signup from './components/SignupForm';
 import Login from './components/Login';
 import Home from './components/Home';
-import Create from './admin/Create'
+import Create from './admin/Create';
 
 export default function App() {
   return (

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
@@ -12,25 +13,36 @@ export default function Login() {
   
 const navigate = useNavigate(); 
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
 
     try {
       const res = await axios.post('http://localhost:5000/api/userlogin', {
   Email: email,
-  Password: password,
-});
+  Password: password
+}
+);
 
       console.log('Login successful:', res.data);
       // Optionally redirect or store token
+
+     const role = res.data.role;
+
+    // Redirect based on role
+    if (role === 'User') {
+      navigate('/home');
+    } else if (role === 'Admin') {
+      navigate('/create');
+    } else {
+      setError('Unknown role');
+    }
+
       setEmail('');
       setPassword('');
       setError('');
-      if(setRole ==='User'){
-      navigate('/home');
-      }else{
-        navigate('/create');
-      }
+
     } catch (err) {
       console.error('Login error:', err);
       setError('Invalid credentials');
