@@ -24,7 +24,7 @@ export default function Signup() {
     }
 
     try {
-       await axios.post('http://localhost:5000/api/signup', {
+        axios.post('http://localhost:5000/api/signup', {
         Name: name,
         Email: email,
         Password: password,
@@ -38,7 +38,7 @@ export default function Signup() {
       setEmail('');
       setPassword('');
       setConfirmPassword('');
-      setRole('Admin');
+      setRole('');
        navigate('/');
     } catch (error) {
       console.error('Signup error:', error);
@@ -68,7 +68,7 @@ export default function Signup() {
             </label>
             <input
               type="text"
-              id="username"
+              id="name"
               autoComplete="name"
               value={name}
               onChange={(e) => setName(e.target.value)}

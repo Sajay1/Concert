@@ -36,6 +36,12 @@ export default function Home() {
                         <p>Venue: {concert.venue}</p>
                         <p>Price: ${concert.ticketprice}</p>
                         <p>Available Tickets: {concert.AvailableTickets}</p>
+                        <div className="flex flex-col justify-center bg-green-600 rounded-lg mt-5 m-7 mb-1 text-white p-3 text-center">
+                            <button type="submit"> 
+                            Book Now
+                        </button>
+                        </div>
+                        
                     </div>
                 )) : (
                     <p className="text-gray-500 col-span-full text-center">No concerts available.</p>
