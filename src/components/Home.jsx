@@ -34,7 +34,7 @@ export default function Home() {
                         <h3 className="text-xl font-semibold mb-4">Concert : {concert.concertname}</h3>
                         <p>Date: {concert.date}</p>
                         <p>Venue: {concert.venue}</p>
-                        <p>Price: ${concert.ticketprice}</p>
+                        <p>Price: Rs:{concert.ticketprice}</p>
                         <p>Available Tickets: {concert.AvailableTickets}</p>
                         <div className="flex flex-col justify-center bg-green-600 rounded-lg mt-5 m-7 mb-1 text-white p-3 text-center">
                             <button type="submit"> 

@@ -44,23 +44,23 @@ export default function Create() {
     
     return(
         <>
-    <form onSubmit={handleCreate} enctype="multipart/form-data">
-      <label for="ConcertName">Concert Name:</label>
-      <input type="text" id="ConcertName" name="ConcertName" required/>
+    <form onSubmit={handleCreate} encType="multipart/form-data">
+      <label htmlFor="concertname">Concert Name:</label>
+      <input type="text" id="concertname" name="concertname" required/>
 
-      <label for="Date">Date:</label>
-      <input type="datetime-local" id="Date" name="Date" required/>
+      <label htmlFor="date">Date:</label>
+      <input type="datetime-local" id="date" name="date" required/>
 
-      <label for="Venue">Venue:</label>
-      <input type="text" id="Venue" name="Venue" required/>
+      <label htmlFor="venue">Venue:</label>
+      <input type="text" id="venue" name="venue" required/>
 
-      <label for="TicketPrice">Price:</label>
-      <input type="number" id="TicketPrice" name="TicketPrice" step="0.01" required/>
+      <label htmlFor="ticketprice">Price:</label>
+      <input type="number" id="ticketprice" name="ticketprice" step="0.01" required/>
 
-      <label for="AvailableTickets">Available Tickets:</label>
-      <input type="number" id="AvailableTickets" name="AvailableTickets" required/>
+      <label htmlFor="availabletickets">Available Tickets:</label>
+      <input type="number" id="availabletickets" name="availabletickets" required/>
 
-      <label for="image">Add Image:</label>
+      <label htmlFor="image">Add Image:</label>
       <input type="file" name="image" accept="image/*" required/>
 
       <button type="submit" className="flex flex-col justify-center bg-green-500 rounded-lg p-2 font-bold">
