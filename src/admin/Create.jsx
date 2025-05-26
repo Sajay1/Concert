@@ -1,73 +1,122 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Create() {
+  const [concertname, setConcertName] = useState('');
+  const [date, setDate] = useState('');
+  const [venue, setVenue] = useState('');
+  const [ticketprice, setTicketPrice] = useState('');
+  const [availabletickets, setAvailableTickets] = useState('');
+  const [image, setImage] = useState(null);
+  const fileInputRef = useRef(null); // 
+  const navigate = useNavigate();
 
+  const handleCreate = async (e) => {
+    e.preventDefault();
 
-    const [concertname, setConcertName] = useState('');
-    const[date,setDate] = useState('');
-    const[venue,setVenue] = useState('');
-    const[ticketprice,setTicketPrice] = useState('');
-    const[availabletickets,setAvailableTickets] = useState('');
-    const[image, setImage] = useState(null);
-    const navigate = useNavigate();
+    if (!image) {
+      alert("Please upload an image");
+      return;
+    }
 
-    const handleCreate = async(e) => {
-        e.preventDefault();
+    const formData = new FormData();
+    formData.append("ConcertName", concertname);
+    formData.append("Date", date);
+    formData.append("Venue", venue);
+    formData.append("TicketPrice", ticketprice);
+    formData.append("AvailableTickets", availabletickets);
+    formData.append("image", image);
 
-        try{
-            axios.post('http://localhost:5000/api/concert_create',
-               {
-                ConcertName:concertname,
-                Date:date,
-                Venue:venue,
-                TicketPrice:ticketprice,
-                AvailableTickets:availabletickets,
-                image: image
-               } 
-            )
-            setConcertName('');
-            setDate('');
-            setVenue('');
-            setTicketPrice('');
-            setAvailableTickets('');
-            setImage([]);
-            navigate('/admin')
-        }
-        catch{
-            console.error("Error creating concert");
-        }
+    try {
+      await axios.post("http://localhost:5000/api/concert_create", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-    };
-    
-    return(
-        <>
-    <form onSubmit={handleCreate} encType="multipart/form-data">
+      // Reset form fields
+      setConcertName('');
+      setDate('');
+      setVenue('');
+      setTicketPrice('');
+      setAvailableTickets('');
+      setImage(null);
+
+      navigate('/admin');
+    } catch (error) {
+      console.error("Error creating concert:", error);
+    }
+  };
+
+  return (
+    <form onSubmit={handleCreate} encType="multipart/form-data" className="flex flex-col gap-2">
       <label htmlFor="concertname">Concert Name:</label>
-      <input type="text" id="concertname" name="concertname" required/>
+      <input
+        type="text"
+        id="concertname"
+        name="concertname"
+        value={concertname}
+        onChange={(e) => setConcertName(e.target.value)}
+        required
+      />
 
       <label htmlFor="date">Date:</label>
-      <input type="datetime-local" id="date" name="date" required/>
+      <input
+        type="datetime-local"
+        id="date"
+        name="date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+        required
+      />
 
       <label htmlFor="venue">Venue:</label>
-      <input type="text" id="venue" name="venue" required/>
+      <input
+        type="text"
+        id="venue"
+        name="venue"
+        value={venue}
+        onChange={(e) => setVenue(e.target.value)}
+        required
+      />
 
       <label htmlFor="ticketprice">Price:</label>
-      <input type="number" id="ticketprice" name="ticketprice" step="0.01" required/>
+      <input
+        type="number"
+        id="ticketprice"
+        name="ticketprice"
+        step="0.01"
+        value={ticketprice}
+        onChange={(e) => setTicketPrice(e.target.value)}
+        required
+      />
 
       <label htmlFor="availabletickets">Available Tickets:</label>
-      <input type="number" id="availabletickets" name="availabletickets" required/>
+      <input
+        type="number"
+        id="availabletickets"
+        name="availabletickets"
+        value={availabletickets}
+        onChange={(e) => setAvailableTickets(e.target.value)}
+        required
+      />
 
       <label htmlFor="image">Add Image:</label>
-      <input type="file" name="image" accept="image/*" required/>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => setImage(e.target.files[0])}
+        ref={fileInputRef}
+        required
+      />
 
-      <button type="submit" className="flex flex-col justify-center bg-green-500 rounded-lg p-2 font-bold">
+      <button
+        type="submit"
+        className="bg-green-500 text-white rounded-lg p-2 font-bold hover:bg-green-600 transition"
+      >
         Create
       </button>
-      
     </form>
-   </>
-    )
+  );
 }

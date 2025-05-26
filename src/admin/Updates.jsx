@@ -1,73 +1,114 @@
-import React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function Updates() {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
+  const [concertname, setConcertName] = useState("");
+  const [date, setDate] = useState("");
+  const [venue, setVenue] = useState("");
+  const [ticketprice, setTicketPrice] = useState("");
+  const [availabletickets, setAvailableTickets] = useState("");
+  const [image, setImage] = useState(null);
 
-    const [concertname, setConcertName] = useState('');
-    const[date,setDate] = useState('');
-    const[venue,setVenue] = useState('');
-    const[ticketprice,setTicketPrice] = useState('');
-    const[availabletickets,setAvailableTickets] = useState('');
-    const[image, setImage] = useState(null);
-    const navigate = useNavigate();
-
-    const handleUpdate = async(e) => {
-        e.preventDefault();
-
-        try{
-            axios.put(`http://localhost:5000/api/concert_update/${id}`,
-               {
-                ConcertName:concertname,
-                Date:date,
-                Venue:venue,
-                TicketPrice:ticketprice,
-                AvailableTickets:availabletickets,
-                image: image
-               } 
-            )
-            setConcertName('');
-            setDate('');
-            setVenue('');
-            setTicketPrice('');
-            setAvailableTickets('');
-            setImage([]);
-            navigate('/admin')
-        }
-        catch{
-            console.error("Error creating concert");
-        }
-
+  useEffect(() => {
+    const fetchConcert = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/concert_retrieve/`);
+        const data = res.data;
+        setConcertName(data.concertname);
+        setDate(data.date);
+        setVenue(data.venue);
+        setTicketPrice(data.ticketprice);
+        setAvailableTickets(data.availabletickets);
+        // Note: You might want to handle the existing image here
+      } catch (err) {
+        console.error("Error fetching concert data", err);
+      }
     };
-    
-    return(
-        <>
-    <form onSubmit={handleUpdate} encType="multipart/form-data">
-      <label htmlFor="ConcertName">Concert Name:</label>
-      <input type="text" id="ConcertName" name="ConcertName" required/>
 
-      <label htmlFor="Date">Date:</label>
-      <input type="datetime-local" id="Date" name="Date" required/>
+    fetchConcert();
+  }, [id]);
 
-      <label htmlFor="Venue">Venue:</label>
-      <input type="text" id="Venue" name="Venue" required/>
+  const handleUpdate = async (e) => {
+    e.preventDefault();
 
-      <label htmlFor="TicketPrice">Price:</label>
-      <input type="number" id="TicketPrice" name="TicketPrice" step="0.01" required/>
+    const upData = new FormData();
+    upData.append("concertname", concertname);
+    upData.append("date", date);
+    upData.append("venue", venue);
+    upData.append("ticketprice", ticketprice);
+    upData.append("availabletickets", availabletickets);
+    if (image) upData.append("image", image);
 
-      <label htmlFor="AvailableTickets">Available Tickets:</label>
-      <input type="number" id="AvailableTickets" name="AvailableTickets" required/>
+    try {
+      await axios.put(`http://localhost:5000/api/concert_update/${id}`, upData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      console.log("Concert updated successfully");
+      navigate("/admin");
+    } catch (error) {
+      console.error("Error updating concert:", error);
+    }
+  };
 
-      <label htmlFor="image">Add Image:</label>
-      <input type="file" name="image" accept="image/*" required/>
-
-      <button type="submit" className="flex flex-col justify-center bg-green-500 rounded-lg p-2 font-bold">
-        Update
-      </button>
-      
-    </form>
-   </>
-    )
+  return (
+    <div className="update-form-container">
+      <h2>Update Concert</h2>
+      <form onSubmit={handleUpdate} encType="multipart/form-data">
+        <input
+          value={concertname}
+          name="concertname"
+          onChange={(e) => setConcertName(e.target.value)}
+          placeholder="Name"
+          required
+        />
+        <input
+          type="datetime-local"
+          value={date}
+          name="date"
+          onChange={(e) => setDate(e.target.value)}
+          required
+        />
+        <input
+          value={venue}
+          name="venue"
+          onChange={(e) => setVenue(e.target.value)}
+          placeholder="Venue"
+          required
+        />
+        <input
+          type="number"
+          name="ticketprice"
+          value={ticketprice}
+          onChange={(e) => setTicketPrice(e.target.value)}
+          placeholder="Price"
+          required
+        />
+        <input
+          type="number"
+          name="availabletickets"
+          value={availabletickets}
+          onChange={(e) => setAvailableTickets(e.target.value)}
+          placeholder="Available Tickets"
+          required
+        />
+        <input
+          type="file"
+          name="image"
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files[0])}
+        />
+        {image && (
+          <div className="image-preview">
+            <p>New Image Preview:</p>
+            <img src={URL.createObjectURL(image)} alt="Preview" width="100" />
+          </div>
+        )}
+        <button type="submit">Update Concert</button>
+      </form>
+    </div>
+  );
 }

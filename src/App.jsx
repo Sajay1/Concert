@@ -18,9 +18,9 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path='/home' element={<Home/>}></Route>
           <Route path='/admin' element={<Admin/>}></Route>
-          <Route path='/create' element={<Create/>}></Route>
-          <Route path='/delete' element={<Delete/>}></Route>
-          <Route path='/update' element={<Updates/>}></Route>
+          <Route path='/concert_create' element={<Create/>}></Route>
+          <Route path='/concert_delete/:id' element={<Delete/>}></Route>
+          <Route path="/concert_update/:id" element={<Updates />} />
 
           <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
