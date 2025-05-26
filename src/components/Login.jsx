@@ -29,6 +29,8 @@ const navigate = useNavigate();
 const role = res.data.role; // Assuming the response contains a Role field
       console.log('Login successful:', res.data);
       // Optionally redirect or store token
+      localStorage.setItem('role', res.data.role); // Store token in localStorage
+console.log('Role:', res.data.role); // Log the role for debugging
 
       setEmail('');
       setPassword('');
@@ -90,17 +92,14 @@ const role = res.data.role; // Assuming the response contains a Role field
             </div>
           </div>
 
-          <div className='mx-auto w-full'>
+          <div className='mx-auto w-full p-5'>
             <button
               type="submit"
               className='w-full text-[20px] text-white bg-blue-500 p-2 rounded hover:bg-blue-600'
             >
               Login
             </button>
-          </div>
 
-          <div className='text-center mt-4 dark:text-white'>
-            Don't have an account? <a className='text-blue-500' href="/signup">Signup</a>
           </div>
         </form>
       </div>
