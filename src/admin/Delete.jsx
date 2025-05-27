@@ -5,6 +5,7 @@ import axios from "axios";
 export default function Delete() {
   const { id } = useParams();
   const navigate = useNavigate();
+  
 
   const handleDelete = async () => {
     try {

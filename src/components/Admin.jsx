@@ -42,8 +42,8 @@ export default function Admin(){
                         <p>Venue: {concert.venue}</p>
                         <p>Price: ${concert.ticketprice}</p>
                         <p>Available Tickets: {concert.AvailableTickets}</p>
-                            <Link to={`/concert_update/:id`} className="flex flex-cols-1 bg-blue-500 rounded-lg justify-center text-center text-white p-3 m-5">Edit</Link>
-                            <Link to={`/concert_delete/:id`} className="flex flex-cols-1 bg-red-500 rounded-lg justify-center text-center text-white p-3 m-5">Delete</Link>
+                            <Link to={`/concert_update/${concert.id}`} className="flex flex-cols-1 bg-blue-500 rounded-lg justify-center text-center text-white p-3 m-5">Edit</Link>
+                            <Link to={`/concert_delete/${concert.id}`} className="flex flex-cols-1 bg-red-500 rounded-lg justify-center text-center text-white p-3 m-5">Delete</Link>
                         </div>
 )):(
   <p className="text-gray-600 col-span-full text-center text-[50px] p-30">No concerts created</p>

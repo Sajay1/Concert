@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { div } from "framer-motion/client";
 
 export default function Create() {
   const [concertname, setConcertName] = useState('');
@@ -110,6 +111,12 @@ export default function Create() {
         ref={fileInputRef}
         required
       />
+      {image &&
+      <div className="image-preview">
+        <p>Image Preview</p>
+        <img src={URL.createObjectURL(image)} alt="preview" width="100"/>
+      </div>
+      } 
 
       <button
         type="submit"

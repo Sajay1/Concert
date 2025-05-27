@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Home() {
     const [concerts, setConcerts] = useState([]);
@@ -36,12 +37,9 @@ export default function Home() {
                         <p>Venue: {concert.venue}</p>
                         <p>Price: Rs:{concert.ticketprice}</p>
                         <p>Available Tickets: {concert.AvailableTickets}</p>
-                        <div className="flex flex-col justify-center bg-green-600 rounded-lg mt-5 m-7 mb-1 text-white p-3 text-center">
-                            <button type="submit"> 
-                            Book Now
-                        </button>
-                        </div>
-                        
+
+                            <Link to={`/booking/${concert.id}`} className="flex flex-col bg-green-500 text-white text-center rounded-lg m-4 -mb-1 p-2 shadow-md md:m-2 xs:m-2">Book Now</Link>
+
                     </div>
                 )) : (
                     <p className="text-gray-500 col-span-full text-center">No concerts available.</p>

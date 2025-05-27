@@ -13,34 +13,15 @@ export default function Updates() {
   const [availabletickets, setAvailableTickets] = useState("");
   const [image, setImage] = useState(null);
 
-  useEffect(() => {
-    const fetchConcert = async () => {
-      try {
-        const res = await axios.get(`http://localhost:5000/api/concert_retrieve/`);
-        const data = res.data;
-        setConcertName(data.concertname);
-        setDate(data.date);
-        setVenue(data.venue);
-        setTicketPrice(data.ticketprice);
-        setAvailableTickets(data.availabletickets);
-        // Note: You might want to handle the existing image here
-      } catch (err) {
-        console.error("Error fetching concert data", err);
-      }
-    };
-
-    fetchConcert();
-  }, [id]);
-
   const handleUpdate = async (e) => {
     e.preventDefault();
 
     const upData = new FormData();
-    upData.append("concertname", concertname);
-    upData.append("date", date);
-    upData.append("venue", venue);
-    upData.append("ticketprice", ticketprice);
-    upData.append("availabletickets", availabletickets);
+    upData.append("ConcertName", concertname);
+    upData.append("Date", date);
+    upData.append("Venue", venue);
+    upData.append("TicketPrice", ticketprice);
+    upData.append("AvailableTickets", availabletickets);
     if (image) upData.append("image", image);
 
     try {
