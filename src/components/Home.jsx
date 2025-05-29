@@ -6,7 +6,7 @@ export default function Home() {
     const [concerts, setConcerts] = useState([]);
 
     useEffect(() => {
-    axios.get("http://localhost:5000/api/concert_retrieve")
+    axios.get(`http://localhost:5000/api/concert_retrieve`)
         .then(res => {
             console.log("API Success:", res.data);
             setConcerts(res.data.data || []);

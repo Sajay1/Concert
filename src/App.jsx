@@ -9,6 +9,7 @@ import Create from './admin/Create';
 import Delete from './admin/Delete';
 import Updates from './admin/Updates';
 import Booking from './Booking/Booking';
+import Confirmed from './Booking/Confirmed';
 
 export default function App() {
   return (
@@ -23,7 +24,7 @@ export default function App() {
           <Route path='/concert_delete/:id' element={<Delete/>}></Route>
           <Route path="/concert_update/:id" element={<Updates/>} />
           <Route path='/booking/:id' element={<Booking/>}></Route>
-          <Route path=''></Route>
+          <Route path="/confirmed/:bookingid" element={<Confirmed />} />
 
           <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>

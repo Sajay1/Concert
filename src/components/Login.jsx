@@ -23,7 +23,10 @@ const navigate = useNavigate();
       const res = await axios.post('http://localhost:5000/api/userlogin', {
   Email: email,
   Password: password
-}
+},
+{
+    withCredentials: true // ✅ So session cookie is set
+  }
 );
 
 const role = res.data.role; // Assuming the response contains a Role field
