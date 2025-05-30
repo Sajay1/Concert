@@ -107,6 +107,7 @@ export default function Create() {
       <input
         type="file"
         accept="image/*"
+        className="bg-gray-300 flex flex-col mx-auto p-1"
         onChange={(e) => setImage(e.target.files[0])}
         ref={fileInputRef}
         required

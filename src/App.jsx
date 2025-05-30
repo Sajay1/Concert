@@ -24,7 +24,7 @@ export default function App() {
           <Route path='/concert_delete/:id' element={<Delete/>}></Route>
           <Route path="/concert_update/:id" element={<Updates/>} />
           <Route path='/booking/:id' element={<Booking/>}></Route>
-          <Route path="/confirmed/:bookingid" element={<Confirmed />} />
+          <Route path="/bookingconfirmed/:id" element={<Confirmed />} />
 
           <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
