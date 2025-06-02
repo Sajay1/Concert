@@ -5,6 +5,7 @@ import axios from 'axios';
 export default function Confirmed() {
   const { id } = useParams();
   const [booking, setBooking] = useState(null);
+  const [concert,setConcert] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [qrCodeUrl, setQrCodeUrl] = useState(null);
@@ -23,12 +24,34 @@ export default function Confirmed() {
       });
   }, [id]); 
 
-  const handleDownloadPDF = () => {
-  };
+  const handleDownloadPDF = async () => {
+  try {
+    const response = await axios.get(`http://localhost:5000/api/generate-pdf/${id}`, {
+      responseType: 'blob', // Important: tells Axios to treat the response as a file
+    });
+
+    // Create a blob URL
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+
+    // Create a temporary download link
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'report.pdf'); // Optional: you can customize the name
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    alert("Downloaded Successfully");
+  } catch (err) {
+    console.error(err);
+    alert("Failed to download PDF");
+  }
+};
+
 
 const handleEmailTicket = async () => {
   try {
-    await axios.post(`http://localhost:5000/api/booking_mail/${booking._id}`);
+    await axios.get(`http://localhost:5000/api/booking_mail/${id}`);
     alert("Ticket emailed successfully!");
   } catch (err) {
     alert("Failed to email ticket.");
@@ -43,7 +66,8 @@ const handleEmailTicket = async () => {
   );
 
   if (error) return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md text-center">
+    
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md text-center bg-[url('https://images.unsplash.com/photo-1719695466637-243c50630b8a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center min-h-screen">
       <h2 className="text-xl font-bold text-red-600 mb-4">Error</h2>
       <p className="mb-4">{error}</p>
       <Link to="/home" className="text-blue-600 hover:underline">
@@ -53,24 +77,24 @@ const handleEmailTicket = async () => {
   );
 
   if (!booking) return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md text-center">
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md text-center bg-[url('https://images.unsplash.com/photo-1719695466637-243c50630b8a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center min-h-screen">
       <p>No booking information available</p>
     </div>
   );
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md bg-[url('https://images.unsplash.com/photo-1719695466637-243c50630b8a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center min-h-screen">
       <h1 className="text-2xl font-bold text-center mb-6 text-green-600">
         🎉 Booking Confirmed!
       </h1>
 
-      <div className="space-y-3 mb-6">
+      <div className="space-y-3 mb-6 text-white">
         <h2 className="text-xl font-semibold">{booking.concert?.ConcertName || 'Concert'}</h2>
         <p><span className="font-medium">Date:</span> {new Date(booking.date).toLocaleDateString()}</p>
         <p><span className="font-medium">Time:</span> {booking.time}</p>
         <p><span className="font-medium">Venue:</span> {booking.venue}</p>
         <p><span className="font-medium">Tickets:</span> {booking.quantity}</p>
-        <p><span className="font-medium">Booking Reference:</span> {booking._id}</p>
+        <p><span className="font-medium">Booking Reference:</span> {booking.id}</p>
       </div>
 
       {qrCodeUrl && (
