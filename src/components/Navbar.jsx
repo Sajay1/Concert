@@ -8,6 +8,14 @@ export default function Navbar() {
   const location = useLocation();
   const [role, setRole] = useState('');
 
+  const handleback = () => {
+    navigate(-1);
+  };
+
+  const handlefwd = () => {
+    navigate(1);
+  };
+
   useEffect(() => {
     const storedRole = localStorage.getItem('role');
     setRole(storedRole?.toLowerCase() || '');
@@ -25,7 +33,6 @@ export default function Navbar() {
         return (
           <div className='flex'>
             <Link to="/home" className={linkStyle}>Concerts</Link>
-            <Link to="/profile" className={linkStyle}></Link>
             <button onClick={logout} className={linkStyle}>Logout</button>
           </div>
         );
@@ -47,6 +54,7 @@ export default function Navbar() {
   };
 
   const linkStyle = "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium";
+  const navButtonStyle = "p-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none";
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -63,11 +71,33 @@ export default function Navbar() {
                   )}
                 </Disclosure.Button>
               </div>
+
+              <div className="flex items-center space-x-2">
+                <button 
+                  onClick={handleback} 
+                  className={navButtonStyle}
+                  aria-label="Go back"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+                <button 
+                  onClick={handlefwd} 
+                  className={navButtonStyle}
+                  aria-label="Go forward"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex shrink-0 items-center">
-                  <h1 className="text-white font-bold text-2xl ">Concert</h1>
+                  <h1 className="text-white font-bold text-2xl ml-4">Concert</h1>
                 </div>
-                <div className="hidden sm:ml-6 sm:block ">
+                <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">{renderLinks()}</div>
                 </div>
               </div>
